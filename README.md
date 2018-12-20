@@ -1,5 +1,13 @@
 # Воркшоп по созданию GraphQL сервера на Node.JS и Apollo Client
 
+## Схема данных
+
+![Data Domain](./misc/assets/workshop-data-domain.svg)
+
+![MongoDB Schema](./misc/assets/workshop-mongodb-schema.svg)
+
+[Полная модель данных Northwind](./misc/northwind)
+
 ## ФАК
 
 1. Гит не видит нужных веток
