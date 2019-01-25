@@ -1,5 +1,8 @@
 # Воркшоп по созданию GraphQL сервера на Node.JS и Apollo Client
 
+- [План Old](./plan.md)
+- [План 2](./plan2.md)
+
 ## Схема данных
 
 ![Data Domain](./misc/assets/workshop-data-domain.svg)
@@ -26,16 +29,6 @@ git checkout step0-start # вернитесь
 git stash apply # загрузите сохранение
 ```
 
-## Overview (TODO: DRAFT from https://github.com/nikolasburk/graphqlday-workshop)
-
-This git repository contains several branches that correspond to the "steps" to be performed throughout the workshops. The `master` branch contains the final version of the code.
-
-* [Step 0](https://github.com/nikolasburk/graphqlday-workshop/tree/step0): Minimal GraphQL server
-* [Step 1](https://github.com/nikolasburk/graphqlday-workshop/tree/step1): Extend API with query arguments
-* [Step 2](https://github.com/nikolasburk/graphqlday-workshop/tree/step2): Complete API operations
-* [Step 3](https://github.com/nikolasburk/graphqlday-workshop/tree/step3): Add database layer with Prisma and Prisma bindings
-* [Step 4](https://github.com/nikolasburk/graphqlday-workshop/tree/step4): Complete API operations against the database
-
 ## Usage
 
 ### Clone the repository
@@ -47,12 +40,28 @@ cd graphql-workshop-ru
 
 ### Install packages
 
-TODO: yarn or package-lock?
+```bash
+yarn install
+cd server && yarn install
+cd client && yarn install
+```
 
-### Start the server
+### Start the client and the server
 
 ```bash
-nodemon src/index.js
+yarn watch
+```
+
+Or only server
+
+```bash
+cd server && yarn watch
+```
+
+Or only client
+
+```bash
+cd client && yarn watch
 ```
 
 ### APP Diagramm

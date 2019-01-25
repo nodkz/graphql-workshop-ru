@@ -1,0 +1,73 @@
+# План по мастер-классу GraphQL
+
+- Ожидания
+- Разработка GraphQL-сервера (4 часа)
+  - Установка Typescript
+    - пакет typescript
+    - tsconfig.json
+    - tslint
+  - Установка Prettier для красивого кода
+  - Создаем папку /server
+    - Ставим компиляцию tsc в js
+    - Ставим nodemon
+    - Пишем скрипт watch с помощью concurrently
+  - Установка apollo-server
+    - Примитивная hello схема на graphql-js
+    - Примитивная схема на graphql-tools
+  - Пишем модульную схему на graphql-tools
+    - Тип Query
+    - Тип Mutation
+    - Настраиваем graphql-code-generator для сборки typeDefs
+    - Настраиваем merge-graphql-schemas для мерджинга резолверов
+    - Установка Eslint для проверки gql файлов на сервере
+    - Настройка VSCode
+      - Плагин ["GraphQL for VSCode"](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
+        - Установка @playlyfe/gql и Watchman
+        - Написание конфига .gqlconfig
+    - Настройка context
+    - Тип Customer
+    - Пишем глобальные типы (Address)
+    - Тип Employee
+    - Пишем скалярный тип Date с валидацией
+    - Тип Product
+    - Тип Order
+    - Решаем проблему N+1 для Employee.reportsTo
+- Разработка Apollo Client (3 часа)
+  - Установка npx create-react-app client --typescript
+  - Пишем watch скрипты с concurrently
+  - Настраиваем ApolloClient
+    - InMemoryCache
+    - HttpLink
+    - Запрос на сервер напрямую из client
+  - Пишем примитивное React-приложение с GraphQL-запросом 
+  - Настраиваем apollo-codegen для генерации дефинишенов
+  - Покрываем запрос типами
+  - Подключаем react-bootstrap
+    - Натягиваем шаблончик приложения
+  - Устанавливаем react-router
+    - Пакет history
+    - Делаем меню
+    - Mock для страниц
+  - Пишем Orders
+    - OrderRoutes
+    - OrderListItem
+    - OrderList
+    - OrderListQuery подключаем к роутеру
+    - Допиливаем пагинацию на сервере и прикручиваем компоненту Pagination
+- Настройка Авторизации (1,5 часа) 
+  - Сервер
+    - Создаем Auth модель
+    - Настраиваем работу с cookie+headers и GraphQL
+    - Тип Auth, User и Me
+      - Мутации login, logout
+    - Опционально: настройка http-ендпоинтов login/ logout/
+    - Настраиваем CORS (includes)
+    - Настраиваем Playground на работу с куками
+    - Примитивный RBAC
+  - Клиент
+    - HttpLink на credentials: 'include'
+    - Написание базовых компонент для login/logout
+    - Написание формы логина с final-form
+    - Прикручивание мутации к final-form
+    - Типизация переменных
+- Обратная связь
