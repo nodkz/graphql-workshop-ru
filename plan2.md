@@ -2,27 +2,27 @@
 
 - Ожидания
 - Разработка GraphQL-сервера (4 часа)
-  - Установка Typescript
+  - Установка Typescript (30 мин)
     - пакет typescript
     - tsconfig.json
     - tslint
-  - Установка Prettier для красивого кода
-  - Создаем папку /server
+    - Установка Prettier для красивого кода
+  - Создаем папку server/ (30 мин)
     - Ставим компиляцию tsc в js
     - Ставим nodemon
     - Пишем скрипт watch с помощью concurrently
-  - Установка apollo-server
+  - Установка apollo-server (30 мин)
     - Примитивная hello схема на graphql-js
     - Примитивная схема на graphql-tools
-  - Пишем модульную схему на graphql-tools
+  - Пишем модульную схему на graphql-tools (2.5 часа)
     - Тип Query
     - Тип Mutation
     - Настраиваем graphql-code-generator для сборки typeDefs
     - Настраиваем merge-graphql-schemas для мерджинга резолверов
     - Установка Eslint для проверки gql файлов на сервере
     - Настройка VSCode
-      - Плагин ["GraphQL for VSCode"](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
-        - Установка @playlyfe/gql и Watchman
+      - Плагин [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
+        - Установка @playlyfe/gql и Watchman 
         - Написание конфига .gqlconfig
     - Настройка context
     - Тип Customer
@@ -33,29 +33,30 @@
     - Тип Order
     - Решаем проблему N+1 для Employee.reportsTo
 - Разработка Apollo Client (3 часа)
-  - Установка npx create-react-app client --typescript
-  - Пишем watch скрипты с concurrently
-  - Настраиваем ApolloClient
+  - Создаем папку client/ (10 мин)
+    - npx create-react-app client --typescript
+    - Пишем watch скрипты с concurrently
+  - Настраиваем ApolloClient (45 мин)
     - InMemoryCache
     - HttpLink
     - Запрос на сервер напрямую из client
-  - Пишем примитивное React-приложение с GraphQL-запросом 
-  - Настраиваем apollo-codegen для генерации дефинишенов
-  - Покрываем запрос типами
-  - Подключаем react-bootstrap
+    - Пишем примитивное React-приложение с GraphQL-запросом 
+    - Настраиваем apollo-codegen для генерации дефинишенов
+    - Покрываем запрос типами
+  - Подключаем react-bootstrap (10 мин)
     - Натягиваем шаблончик приложения
-  - Устанавливаем react-router
+  - Устанавливаем react-router (30 мин)
     - Пакет history
     - Делаем меню
     - Mock для страниц
-  - Пишем Orders
+  - Пишем Orders (60 мин)
     - OrderRoutes
     - OrderListItem
     - OrderList
     - OrderListQuery подключаем к роутеру
     - Допиливаем пагинацию на сервере и прикручиваем компоненту Pagination
 - Настройка Авторизации (1,5 часа) 
-  - Сервер
+  - Сервер (50 мин)
     - Создаем Auth модель
     - Настраиваем работу с cookie+headers и GraphQL
     - Тип Auth, User и Me
@@ -64,7 +65,7 @@
     - Настраиваем CORS (includes)
     - Настраиваем Playground на работу с куками
     - Примитивный RBAC
-  - Клиент
+  - Клиент (40 мин)
     - HttpLink на credentials: 'include'
     - Написание базовых компонент для login/logout
     - Написание формы логина с final-form
