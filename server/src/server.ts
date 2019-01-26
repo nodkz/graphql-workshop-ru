@@ -1,28 +1,20 @@
-import { ApolloServer } from 'apollo-server';
-import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
+import { ApolloServer, gql } from 'apollo-server';
 
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'Query',
-    fields: () => ({
-      hello: {
-        args: {
-          name: {
-            type: new GraphQLNonNull(GraphQLString),
-            description: 'Please provide your name',
-          },
-        },
-        resolve: (source, args, context, info) => {
-          return `HELLO, ${args.name}`;
-        },
-        type: GraphQLString,
-      },
-    }),
-  }),
-});
+const typeDefs = gql`
+  type Query {
+    hello(name: String!): String
+  }
+`;
+
+const resolvers = {
+  Query: {
+    hello: (source: {}, args: any, contect: {}, info: {}) => `Hello, ${args.name}`,
+  },
+};
 
 const server = new ApolloServer({
-  schema,
+  typeDefs,
+  resolvers,
   playground: true,
 });
 
