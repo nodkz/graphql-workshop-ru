@@ -24,6 +24,8 @@ export interface HiQueryArgs {
 
 import { GraphQLResolveInfo } from "graphql";
 
+import { GraphQLContext } from "../context";
+
 export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
   parent: Parent,
   args: Args,
@@ -74,7 +76,7 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
 ) => TResult | Promise<TResult>;
 
 export namespace QueryResolvers {
-  export interface Resolvers<Context = {}, TypeParent = {}> {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
     hi?: HiResolver<Maybe<string>, TypeParent, Context>;
 
     time?: TimeResolver<number, TypeParent, Context>;
@@ -83,36 +85,36 @@ export namespace QueryResolvers {
   export type HiResolver<
     R = Maybe<string>,
     Parent = {},
-    Context = {}
+    Context = GraphQLContext
   > = Resolver<R, Parent, Context, HiArgs>;
   export interface HiArgs {
     name: string;
   }
 
-  export type TimeResolver<R = number, Parent = {}, Context = {}> = Resolver<
-    R,
-    Parent,
-    Context
-  >;
+  export type TimeResolver<
+    R = number,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
 }
 
 export namespace MutationResolvers {
-  export interface Resolvers<Context = {}, TypeParent = {}> {
+  export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
     time?: TimeResolver<number, TypeParent, Context>;
   }
 
-  export type TimeResolver<R = number, Parent = {}, Context = {}> = Resolver<
-    R,
-    Parent,
-    Context
-  >;
+  export type TimeResolver<
+    R = number,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
 }
 
 /** Directs the executor to skip this field or fragment when the `if` argument is true. */
 export type SkipDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   SkipDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface SkipDirectiveArgs {
   /** Skipped when true. */
@@ -123,7 +125,7 @@ export interface SkipDirectiveArgs {
 export type IncludeDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   IncludeDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface IncludeDirectiveArgs {
   /** Included when true. */
@@ -134,14 +136,14 @@ export interface IncludeDirectiveArgs {
 export type DeprecatedDirectiveResolver<Result> = DirectiveResolverFn<
   Result,
   DeprecatedDirectiveArgs,
-  {}
+  GraphQLContext
 >;
 export interface DeprecatedDirectiveArgs {
   /** Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/). */
   reason?: string;
 }
 
-export interface IResolvers<Context = {}> {
+export interface IResolvers<Context = GraphQLContext> {
   Query?: QueryResolvers.Resolvers<Context>;
   Mutation?: MutationResolvers.Resolvers<Context>;
 }

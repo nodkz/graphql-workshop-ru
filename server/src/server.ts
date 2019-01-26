@@ -1,9 +1,11 @@
 import { ApolloServer } from 'apollo-server';
 import schema from './schema';
+import { prepareContext } from './schema/context';
 
 const server = new ApolloServer({
   schema,
   playground: true,
+  context: prepareContext,
 });
 
 server.listen(
