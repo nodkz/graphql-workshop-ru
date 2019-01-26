@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Server,Client\" -c \"yellow.bold,blue.bold\" npm:watch-server npm:watch-client",
+    "watch-client": "cd ./client && npm run watch",
+    "watch-server": "cd ./server && npm run watch"
   },
   "repository": {
     "type": "git",
@@ -19,7 +22,10 @@
   "devDependencies": {
     "@playlyfe/gql": "^2.6.1",
     "@types/prettier": "^1.15.2",
+    "concurrently": "^4.1.0",
     "prettier": "^1.16.1",
+    "rxjs": "6.2.2",
+    "rxjs-compat": "6.2.2",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1",
