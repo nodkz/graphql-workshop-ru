@@ -26,13 +26,13 @@ type OrderDetails {
 extend type Query {
   order(id: ID!): Order
   orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
-  # orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
+  orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
 }
 
-# type OrderPagination {
-#   items: [Order!]!
-#   pageInfo: PaginationInfo!
-# }
+type OrderPagination {
+  items: [Order!]!
+  pageInfo: PaginationInfo!
+}
 
 input OrderFilterInput {
   orderID: Int

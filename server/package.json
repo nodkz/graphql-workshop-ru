@@ -6,7 +6,7 @@
   "scripts": {
     "build-ts": "tsc",
     "clear": "rm -rf dist || true && mkdir dist && tsc",
-    "watch": "npm run clear && concurrently --kill-others-on-fail --kill-others npm:watch-*",
+    "watch": "npm run clear && concurrently -k npm:watch-*",
     "watch-ts": "tsc --watch --preserveWatchOutput",
     "watch-node": "nodemon --watch ./dist --delay 1",
     "watch-gcg": "npm run gcg -- --watch",

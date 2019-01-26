@@ -109,6 +109,8 @@ export interface Query {
 
   orders: Order[];
 
+  orderPagination: OrderPagination;
+
   product?: Maybe<Product>;
 
   products: (Maybe<Product>)[];
@@ -244,6 +246,27 @@ export interface Product {
   discontinued?: Maybe<boolean>;
 }
 
+export interface OrderPagination {
+  items: Order[];
+
+  pageInfo: PaginationInfo;
+}
+
+export interface PaginationInfo {
+  /** Total number of pages */
+  totalPages: number;
+  /** Total number of items */
+  totalItems: number;
+  /** Current page number */
+  page: number;
+  /** Number of items per page */
+  perPage: number;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: boolean;
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: boolean;
+}
+
 export interface Mutation {
   customer?: Maybe<CustomerMutations>;
 
@@ -291,6 +314,13 @@ export interface OrdersQueryArgs {
   limit: number;
 
   offset?: Maybe<number>;
+}
+export interface OrderPaginationQueryArgs {
+  filter?: Maybe<OrderFilterInput>;
+
+  page: number;
+
+  perPage: number;
 }
 export interface ProductQueryArgs {
   id: string;
@@ -380,6 +410,12 @@ export namespace QueryResolvers {
 
     orders?: OrdersResolver<Order[], TypeParent, Context>;
 
+    orderPagination?: OrderPaginationResolver<
+      OrderPagination,
+      TypeParent,
+      Context
+    >;
+
     product?: ProductResolver<Maybe<Product>, TypeParent, Context>;
 
     products?: ProductsResolver<(Maybe<Product>)[], TypeParent, Context>;
@@ -453,6 +489,19 @@ export namespace QueryResolvers {
     limit: number;
 
     offset?: Maybe<number>;
+  }
+
+  export type OrderPaginationResolver<
+    R = OrderPagination,
+    Parent = {},
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context, OrderPaginationArgs>;
+  export interface OrderPaginationArgs {
+    filter?: Maybe<OrderFilterInput>;
+
+    page: number;
+
+    perPage: number;
   }
 
   export type ProductResolver<
@@ -937,6 +986,79 @@ export namespace ProductResolvers {
   > = Resolver<R, Parent, Context>;
 }
 
+export namespace OrderPaginationResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = OrderPagination
+  > {
+    items?: ItemsResolver<Order[], TypeParent, Context>;
+
+    pageInfo?: PageInfoResolver<PaginationInfo, TypeParent, Context>;
+  }
+
+  export type ItemsResolver<
+    R = Order[],
+    Parent = OrderPagination,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PageInfoResolver<
+    R = PaginationInfo,
+    Parent = OrderPagination,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
+export namespace PaginationInfoResolvers {
+  export interface Resolvers<
+    Context = GraphQLContext,
+    TypeParent = PaginationInfo
+  > {
+    /** Total number of pages */
+    totalPages?: TotalPagesResolver<number, TypeParent, Context>;
+    /** Total number of items */
+    totalItems?: TotalItemsResolver<number, TypeParent, Context>;
+    /** Current page number */
+    page?: PageResolver<number, TypeParent, Context>;
+    /** Number of items per page */
+    perPage?: PerPageResolver<number, TypeParent, Context>;
+    /** When paginating forwards, are there more items? */
+    hasNextPage?: HasNextPageResolver<boolean, TypeParent, Context>;
+    /** When paginating backwards, are there more items? */
+    hasPreviousPage?: HasPreviousPageResolver<boolean, TypeParent, Context>;
+  }
+
+  export type TotalPagesResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type TotalItemsResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PageResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type PerPageResolver<
+    R = number,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type HasNextPageResolver<
+    R = boolean,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+  export type HasPreviousPageResolver<
+    R = boolean,
+    Parent = PaginationInfo,
+    Context = GraphQLContext
+  > = Resolver<R, Parent, Context>;
+}
+
 export namespace MutationResolvers {
   export interface Resolvers<Context = GraphQLContext, TypeParent = {}> {
     customer?: CustomerResolver<Maybe<CustomerMutations>, TypeParent, Context>;
@@ -1034,6 +1156,8 @@ export interface IResolvers<Context = GraphQLContext> {
   Order?: OrderResolvers.Resolvers<Context>;
   OrderDetails?: OrderDetailsResolvers.Resolvers<Context>;
   Product?: ProductResolvers.Resolvers<Context>;
+  OrderPagination?: OrderPaginationResolvers.Resolvers<Context>;
+  PaginationInfo?: PaginationInfoResolvers.Resolvers<Context>;
   Mutation?: MutationResolvers.Resolvers<Context>;
   CustomerMutations?: CustomerMutationsResolvers.Resolvers<Context>;
   CustomerCreatePayload?: CustomerCreatePayloadResolvers.Resolvers<Context>;
@@ -1164,6 +1288,31 @@ input OrderFilterInput {
   shipAddress: AddressInput
 }
 
+type OrderPagination {
+  items: [Order!]!
+  pageInfo: PaginationInfo!
+}
+
+type PaginationInfo {
+  # Total number of pages
+  totalPages: Int!
+
+  # Total number of items
+  totalItems: Int!
+
+  # Current page number
+  page: Int!
+
+  # Number of items per page
+  perPage: Int!
+
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+}
+
 type Product {
   _id: ID!
   productID: Int!
@@ -1198,6 +1347,7 @@ type Query {
   employees(filter: EmployeeFilterInput, limit: Int! = 20, offset: Int): [Employee]!
   order(id: ID!): Order
   orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
+  orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
   product(id: ID!): Product
   products(filter: ProductFilterInput, limit: Int! = 20, offset: Int): [Product]!
   hi(name: String!): String
