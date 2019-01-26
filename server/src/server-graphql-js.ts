@@ -1,3 +1,5 @@
+// UNUSED FILE, just example
+
 import { ApolloServer } from 'apollo-server';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } from 'graphql';
 
