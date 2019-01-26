@@ -31,20 +31,20 @@ const link = ApolloLink.from([errorLink, httpLink]);
 
 const client = new ApolloClient({ cache, link });
 
-const query = gql`
-  query {
-    employees(limit: 10000) {
-      _id
-      lastName
-      firstName
-      reportsTo {
-        firstName
-        lastName
-      }
-    }
-  }
-`;
-console.log(query);
-client.query({ query }).then(res => console.log(`Result:`, res));
+// const query = gql---`
+//   query {
+//     employees(limit: 10000) {
+//       _id
+//       lastName
+//       firstName
+//       reportsTo {
+//         firstName
+//         lastName
+//       }
+//     }
+//   }
+// `;
+// console.log(query);
+// client.query({ query }).then(res => console.log(`Result:`, res));
 
 export default client;

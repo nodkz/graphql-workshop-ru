@@ -14,6 +14,7 @@
     "graphql-tag": "^2.10.1",
     "history": "^4.7.2",
     "react": "^16.7.0",
+    "react-apollo": "^2.4.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-loading": "^2.0.3",
@@ -30,7 +31,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clear": "find . -name \"__generated__\" -exec rm -rf '{}' +",
-    "watch": "npm run clear && concurrently -k npm:watch-*",
+    "watch": "npm run clear && concurrently --kill-others-on-fail --kill-others npm:watch-*",
     "watch-app": "npm run start"
   },
   "eslintConfig": {

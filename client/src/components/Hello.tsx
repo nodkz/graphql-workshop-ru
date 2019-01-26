@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
-// import gql from 'graphql-tag';
-// import MyQuery from './MyQuery';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 class Hello extends Component {
   public render() {
-    console.log('Hello component is render  ');
-
     return (
       <div>
         <h1>Hello</h1>
-        <p>{JSON.stringify(this.props)}</p>
+        <Query
+          query={gql`
+            query HelloQuery($name: String!) {
+              hi(name: $name)
+              employees(limit: 10000) {
+                _id
+                lastName
+                firstName
+                reportsTo {
+                  firstName
+                  lastName
+                }
+              }
+            }
+          `}
+          variables={{
+            name: 'nodkz',
+          }}
+        >
+          {({ loading, error, data }) => {
+            if (loading) {
+              return `Loading`;
+            }
+            if (error) {
+              return `Error!: ${error}`;
+            }
+
+            return <div>{JSON.stringify(data)}</div>;
+          }}
+        </Query>
       </div>
     );
   }
 }
 
-// export const HelloQuery = gql-----`
-//   query Hello {
-//     hello
-//   }
-// `;
-
-// export default () => <MyQuery fetchPolicy="network-only" component={Hello} query={HelloQuery} />;
-
-export default () => <div>222222</div>;
+export default Hello;
