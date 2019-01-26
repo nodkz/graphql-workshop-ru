@@ -8,13 +8,22 @@
     "clear": "rm -rf dist || true && mkdir dist && tsc",
     "watch": "npm run clear && concurrently -k npm:watch-*",
     "watch-ts": "tsc --watch --preserveWatchOutput",
-    "watch-node": "nodemon --watch ./dist --delay 1"
+    "watch-node": "nodemon --watch ./dist --delay 1",
+    "watch-gcg": "npm run gcg -- --watch",
+    "gcg": "mkdirp ./src/schema/__generated__ && gql-gen --config codegen.yml"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/graphql": "^14.0.5",
     "concurrently": "^4.1.0",
+    "graphql-code-generator": "^0.16.0",
+    "graphql-codegen-introspection": "^0.16.0",
+    "graphql-codegen-schema-ast": "^0.16.0",
+    "graphql-codegen-typescript-common": "^0.16.0",
+    "graphql-codegen-typescript-resolvers": "^0.16.0",
+    "graphql-codegen-typescript-server": "^0.16.0",
+    "mkdirp": "^0.5.1",
     "nodemon": "^1.18.9",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.2.2"

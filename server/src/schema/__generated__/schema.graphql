@@ -1,3 +1,7 @@
+type Mutation {
+  time: Float!
+}
+
 type Query {
   hi(name: String!): String
   time: Float!
