@@ -1,0 +1,15 @@
+{
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+      "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+      "editor.formatOnSave": true
+  },
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "types-autoinstaller.useYarn": true,
+  "types-autoinstaller.saveAsDevDependency": true
+}

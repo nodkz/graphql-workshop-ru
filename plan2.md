@@ -22,7 +22,7 @@
     - Установка Eslint для проверки gql файлов на сервере
     - Настройка VSCode
       - Плагин [GraphQL for VSCode](https://marketplace.visualstudio.com/items?itemName=kumar-harsh.graphql-for-vscode)
-        - Установка @playlyfe/gql и Watchman 
+        - Установка @playlyfe/gql и Watchman
         - Написание конфига .gqlconfig
     - Настройка context
     - Тип Customer
@@ -55,7 +55,7 @@
     - OrderList
     - OrderListQuery подключаем к роутеру
     - Допиливаем пагинацию на сервере и прикручиваем компоненту Pagination
-- Настройка Авторизации (1,5 часа) 
+- Настройка Авторизации (1,5 часа)
   - Сервер (50 мин)
     - Создаем Auth модель
     - Настраиваем работу с cookie+headers и GraphQL
