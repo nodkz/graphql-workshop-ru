@@ -31,8 +31,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "clear": "find . -name \"__generated__\" -exec rm -rf '{}' +",
+    "apollo-codegen": "apollo client:codegen --addTypename --target=typescript --localSchemaFile=../server/src/schema/__generated__/schema.graphql --includes=\"./src/**/*.{ts,tsx}\" --tagName gql",
     "watch": "npm run clear && concurrently --kill-others-on-fail --kill-others npm:watch-*",
-    "watch-app": "npm run start"
+    "watch-app": "npm run start",
+    "watch-apollo-codegen": "npm run apollo-codegen -- --watch"
   },
   "eslintConfig": {
     "extends": "react-app"

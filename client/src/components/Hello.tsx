@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { HelloQuery, HelloQueryVariables } from './__generated__/HelloQuery';
+
+class TypedQuery extends Query<HelloQuery, HelloQueryVariables> {}
 
 class Hello extends Component {
   public render() {
     return (
       <div>
         <h1>Hello</h1>
-        <Query
+        <TypedQuery
           query={gql`
             query HelloQuery($name: String!) {
               hi(name: $name)
@@ -36,7 +39,7 @@ class Hello extends Component {
 
             return <div>{JSON.stringify(data)}</div>;
           }}
-        </Query>
+        </TypedQuery>
       </div>
     );
   }
