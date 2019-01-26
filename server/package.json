@@ -2,10 +2,20 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rm -rf dist || true && mkdir dist && tsc",
+    "watch": "npm run clear && concurrently -k npm:watch-*",
+    "watch-ts": "tsc --watch --preserveWatchOutput",
+    "watch-node": "nodemon --watch ./dist --delay 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9",
+    "rxjs": "6.2.2",
+    "rxjs-compat": "6.2.2"
+  }
 }
