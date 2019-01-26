@@ -5,7 +5,7 @@ import Hello from './components/Hello';
 import MainPage from './components/MainPage';
 import Page404 from './components/Page404';
 // import Login from './auth/AuthLoginForm';
-// import OrderRoutes from './orders/OrderRoutes';
+import OrderRoutes from './orders/OrderRoutes';
 
 export default function AppRoutes() {
   return (
@@ -14,7 +14,7 @@ export default function AppRoutes() {
       {/* <Route path="/user" component={User} /> */}
       <Route path="/hello" component={Hello} />
       {/* <Route path="/login" component={Login} /> */}
-      {/* <Route path="/orders" component={OrderRoutes} /> */}
+      <Route path="/orders" component={OrderRoutes} />
       <Route component={Page404} />
     </Switch>
   );
