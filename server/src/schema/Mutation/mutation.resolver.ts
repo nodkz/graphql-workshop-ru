@@ -1,6 +1,9 @@
 const resolvers = {
   Mutation: {
-    time: () => Date.now(),
+    time: async () => {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return Date.now();
+    },
   },
 };
 
