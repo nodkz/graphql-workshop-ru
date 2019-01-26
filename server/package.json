@@ -6,7 +6,7 @@
   "scripts": {
     "build-ts": "tsc",
     "clear": "rm -rf dist || true && mkdir dist && tsc",
-    "watch": "npm run clear && concurrently -k npm:watch-*",
+    "watch": "npm run clear && concurrently npm:watch-*",
     "watch-ts": "tsc --watch --preserveWatchOutput",
     "watch-node": "nodemon --watch ./dist --delay 1",
     "watch-gcg": "npm run gcg -- --watch",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/graphql": "^14.0.5",
+    "@types/lodash": "^4.14.120",
     "concurrently": "^4.1.0",
     "graphql-code-generator": "^0.16.0",
     "graphql-codegen-introspection": "^0.16.0",
@@ -30,8 +31,10 @@
   },
   "dependencies": {
     "apollo-server": "^2.3.2",
+    "dataloader": "^1.4.0",
     "graphql": "^14.1.1",
     "graphql-tools": "^4.0.4",
+    "lodash": "^4.17.11",
     "merge-graphql-schemas": "^1.5.8"
   }
 }

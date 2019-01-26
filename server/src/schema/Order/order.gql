@@ -1,0 +1,48 @@
+type Order {
+  _id: Int!
+  orderID: Int
+  customerID: String
+  customer: Customer
+  employeeID: Int
+  employee: Employee
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: Address
+  details: [OrderDetails]! 
+}
+
+type OrderDetails {
+  productID: Int
+  product: Product
+  unitPrice: Float
+  quantity: Int
+  discount: Float
+}
+
+extend type Query {
+  order(id: ID!): Order
+  orders(filter: OrderFilterInput, limit: Int! = 20, offset: Int): [Order!]!
+  # orderPagination(filter: OrderFilterInput, page: Int! = 1, perPage: Int! = 20): OrderPagination!
+}
+
+# type OrderPagination {
+#   items: [Order!]!
+#   pageInfo: PaginationInfo!
+# }
+
+input OrderFilterInput {
+  orderID: Int
+  customerID: String
+  employeeID: Int
+  orderDate: Date
+  requiredDate: Date
+  shippedDate: Date
+  shipVia: Int
+  freight: Float
+  shipName: String
+  shipAddress: AddressInput
+}
