@@ -13,9 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/graphql": "^14.0.5",
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.9",
     "rxjs": "6.2.2",
     "rxjs-compat": "6.2.2"
+  },
+  "dependencies": {
+    "apollo-server": "^2.3.2",
+    "graphql": "^14.1.1"
   }
 }
